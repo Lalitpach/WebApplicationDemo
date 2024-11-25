@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "StudentDetail";
+}
+
+<h1>StudentDetail</h1>
+<h1>Student Details Form</h1>
+
+<form asp-action="StudentDetail" method="post">
+    <div>
+        <label>Enter Name:</label>
+        <input type="text" name="name" id="name" />
+    </div>
+    <div>
+        <label>Enter Roll Number:</label>
+        <input type="text" name="rollnum" id="rollnum" />
+    </div>
+    <div>
+        <label>Select Branch:</label>
+        @Html.DropDownList("branch", (SelectList)ViewData["branches"], "Select Branch")
+    </div>
+    <div>
+        <label>Select Current Year:</label><br />
+        <input type="radio" name="currentyear" value="1st Year" /> 1st Year
+        <input type="radio" name="currentyear" value="2nd Year" /> 2nd Year
+        <input type="radio" name="currentyear" value="3rd Year" /> 3rd Year
+        <input type="radio" name="currentyear" value="4th Year" /> 4th Year
+    </div>
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+   
+</form>
+@if (ViewBag.Name != null)
+{
+    <h2>Submitted Details</h2>
+    <p><strong>Name:</strong> @ViewBag.Name</p>
+    <p><strong>Roll Number:</strong> @ViewBag.RollNum</p>
+    <p><strong>Branch:</strong> @ViewBag.Branch</p>
+    <p><strong>Current Year:</strong> @ViewBag.CurrentYear</p>
+}
+
+

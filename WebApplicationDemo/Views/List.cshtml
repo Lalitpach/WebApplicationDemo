@@ -1,0 +1,86 @@
+﻿@{
+    // Use ViewData["message"] to display any message passed from the controller.
+    var message = ViewData["message"];
+    var names = ViewData["names"] as IEnumerable<string>;
+    var employeeList = ViewData["emplist"] as IEnumerable<Employeecs>;
+    var employeesFromViewBag = ViewBag.Employees as IEnumerable<Employeecs>;
+}
+
+<p>
+    @message
+</p>
+
+@if (names != null && names.Any())
+{
+    <div>
+        <ol>
+            @foreach (var name in names)
+            {
+                <li>@name</li>
+            }
+        </ol>
+    </div>
+}
+
+<h1>Employee List</h1>
+
+@if (employeeList != null)
+{
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Dept</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var e in employeeList)
+                {
+                    <tr>
+                        <td>@e.Id</td>
+                        <td>@e.Name</td>
+                        <td>@e.Department</td>
+                        <td>@e.Salary</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>No employees found in ViewData["emplist"].</p>
+}
+
+@if (employeesFromViewBag != null)
+{
+    <h2>Employees from ViewBag</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Dept</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var e in employeesFromViewBag)
+            {
+                <tr>
+                    <td>@e.Id</td>
+                    <td>@e.Name</td>
+                    <td>@e.Department</td>
+                    <td>@e.Salary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No employees found in ViewBag.Employees.</p>
+}
